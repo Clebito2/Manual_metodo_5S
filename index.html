@@ -1,47 +1,56 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual de Divulgação de Vaga - Live Consultoria</title>
-
-    <!-- 1.2. Importação de Tipografia (Obrigatório) -->
+    <title>Manual Prático: Implantação do Programa 5S - Live Consultoria</title>
+    
+    <!-- Importação das Fontes (Poppins e Merriweather) conforme Guia de Estilo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* 1. Núcleo da Identidade Visual (Brand Core) - Tokens Obrigatórios */
+        /* --- 1. Núcleo da Identidade Visual (Tokens) --- */
         :root {
-            /* 1.1. Paleta de Cores */
-            --primary-bg: #06192a;
-            --card-bg: #0A243D;
-            --accent-color: #00e800;
-            --text-primary: #ffffff;
-            --text-muted: #cccccc;
-            --text-subtle: #a0a0a0;
+            /* Paleta Principal */
+            --primary-bg: #06192a;     /* Azul Petróleo - Fundo principal */
+            --card-bg: #0A243D;        /* Azul Escuro - Fundo de cards */
+            --accent-color: #00e800;   /* Verde Vibrante - Destaques, links, titulos */
+            
+            /* Textos */
+            --text-primary: #ffffff;   /* Branco - Textos principais */
+            --text-muted: #cccccc;     /* Cinza Claro */
+            --text-subtle: #a0a0a0;    /* Cinza - Textos secundários e parágrafos */
+            
+            /* Bordas e Efeitos */
             --border-color: rgba(255, 255, 255, 0.1);
-            --accent-glow: 0 0 8px rgba(0, 232, 0, 0.7);
+            --accent-glow: 0 0 8px rgba(0, 232, 0, 0.7); /* Sombra para o verde vibrante */
 
-            /* 1.2. Tipografia */
+            /* Tipografia */
             --font-primary: 'Poppins', sans-serif;
             --font-secondary: 'Merriweather', serif;
+
+            /* Tamanhos de Fonte (Mobile-First) */
             --font-size-base: 1.1rem;
             --font-size-h3: 1.5rem;
-            --font-size-h2: clamp(2rem, 4vw, 2.5rem);
-            --font-size-h1: clamp(2.5rem, 5vw, 3rem);
+            --font-size-h2: clamp(1.8rem, 4vw, 2.2rem);
+            --font-size-h1: clamp(2.2rem, 5vw, 2.8rem);
 
-            /* 1.3. Espaçamento */
-            --space-sm: 1rem;   /* 16px */
-            --space-md: 2rem;   /* 32px */
-            --space-lg: 4rem;   /* 64px */
-            --space-xl: 6rem;   /* 96px */
+            /* Espaçamento */
+            --space-sm: 1rem;  /* 16px */
+            --space-md: 2rem;  /* 32px */
+            --space-lg: 4rem;  /* 64px */
+            --space-xl: 6rem;  /* 96px */
+
+            /* Outros */
+            --border-radius: 12px;
+            --transition-speed: 0.3s ease;
         }
 
-        /* Reset Global e Estilos Base */
-        *,
-        *::before,
-        *::after {
+        /* --- 2. Reset Básico e Estilos Globais --- */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -53,647 +62,536 @@
 
         body {
             font-family: var(--font-primary);
-            background-color: var(--primary-bg);
-            color: var(--text-primary);
+            color: var(--text-subtle);
             line-height: 1.7;
-            padding-top: 70px; /* Ajustado para o novo header */
-
-            /* 2.2. Textura de Fundo (Obrigatório) */
+            
+            /* Textura de Fundo (Obrigatória) */
+            background-color: var(--primary-bg); /* Fallback */
             background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
-            background-attachment: fixed;
+            background-attachment: fixed; /* Efeito de paralaxe */
+            
+            overflow-x: hidden;
         }
 
-        /* 6. Padrões de Acessibilidade (a11y) - Foco Visível */
-        *:focus-visible {
-            outline: 3px solid var(--accent-color);
-            outline-offset: 3px;
-            border-radius: 4px;
-        }
-
-        /* 3. Estrutura e Layout */
+        /* --- 3. Estrutura e Layout (Header, Main, Footer) --- */
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 1100px;
             margin-left: auto;
             margin-right: auto;
-            padding-left: var(--space-sm);
-            padding-right: var(--space-sm);
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* 3. Cabeçalho (Header) */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 70px; /* Ajustado */
-            display: flex;
-            align-items: center;
+            padding: var(--space-sm) 0;
             z-index: 1000;
+            transition: background-color var(--transition-speed);
             
-            /* Efeito de vidro com blur */
-            background-color: rgba(6, 25, 42, 0.8); /* --primary-bg com alfa */
+            /* Efeito de blur conforme Guia */
+            background-color: rgba(6, 25, 42, 0.8);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
         }
 
-        header .container {
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        header .logo {
-            max-width: 130px; /* Ajustado */
-            border-radius: 8px; /* Adicionado para arredondar as bordas */
+        .logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
         }
 
-        /* 3. Estrutura e Layout (main) */
         main {
-            width: 100%;
-        }
-
-        /* Seção Hero (Título e Intro) */
-        .hero-section {
-            padding-top: var(--space-lg);
-            padding-bottom: var(--space-md);
-            text-align: center;
-        }
-
-        .hero-section h1 {
-            font-family: var(--font-primary);
-            font-size: var(--font-size-h1);
-            font-weight: 700;
-            color: var(--accent-color); /* Destaque para o H1 principal */
-            margin-bottom: var(--space-sm);
-            line-height: 1.2;
-        }
-
-        .hero-section .subtitle {
-            font-size: var(--font-size-base);
-            color: var(--text-muted);
-            max-width: 70ch; /* Limite de caracteres por linha (UX) */
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Seção de Conteúdo (Passos) */
-        .content-section {
+            padding-top: calc(80px + var(--space-md)); /* 80px = altura aprox. do header */
             padding-bottom: var(--space-lg);
         }
 
-        .steps-grid {
-            display: grid;
-            gap: var(--space-md);
+        section {
+            padding: var(--space-lg) 0;
         }
 
-        /* 4. Componentes - Card Padrão (.card) */
+        footer {
+            text-align: center;
+            padding: var(--space-md) var(--space-sm);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            margin-top: var(--space-sm);
+        }
+
+        /* --- 4. Tipografia --- */
+        h1, h2, h3 {
+            font-family: var(--font-primary);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: var(--font-size-h1);
+            color: var(--accent-color);
+            text-shadow: var(--accent-glow);
+        }
+
+        h2 {
+            font-size: var(--font-size-h2);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: var(--font-size-h3);
+            color: var(--text-muted);
+            margin-top: var(--space-md);
+        }
+
+        p {
+            margin-bottom: var(--space-sm);
+            font-size: var(--font-size-base);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: opacity var(--transition-speed);
+        }
+
+        a:hover, a:focus {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        ul, ol {
+            margin-left: var(--space-sm);
+            padding-left: var(--space-sm);
+            margin-bottom: var(--space-sm);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            font-size: var(--font-size-base);
+        }
+
+        /* --- 5. Componentes --- */
+
+        /* Card Padrão (.card) */
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             padding: var(--space-md);
-            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            margin-bottom: var(--space-md);
         }
 
-        /* 4.1. Estados de Interação */
+        /* Estados de Interação do Card */
         .card:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), var(--accent-glow);
         }
 
-        /* Tipografia dentro dos Cards */
-        .card h3 {
-            font-family: var(--font-primary);
-            font-size: var(--font-size-h3);
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: var(--space-sm);
+        /* Acessibilidade: Foco Visível */
+        a:focus-visible, button:focus-visible, .card:focus-visible {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 3px;
         }
 
-        .card h4 {
-            font-family: var(--font-primary);
-            font-size: 1.2rem;
-            font-weight: 600;
+        /* Card de Diagnóstico (Variação) */
+        .card-diagnostic {
+            border-left: 4px solid var(--accent-color);
+            background: linear-gradient(90deg, rgba(0, 232, 0, 0.05), var(--card-bg) 30%);
+        }
+
+        .card-diagnostic h3, .card-diagnostic h2 {
+            color: var(--accent-color);
+        }
+
+        /* Fonte Secundária para Diagnóstico */
+        .font-secondary {
+            font-family: var(--font-secondary);
+            font-size: 1.2rem; /* Um pouco maior para leitura */
+            font-style: italic;
             color: var(--text-muted);
+        }
+
+        /* Estilização de Tabelas */
+        .table-wrapper {
+            overflow-x: auto; /* Responsividade para tabelas */
+            -webkit-overflow-scrolling: touch;
             margin-top: var(--space-md);
-            margin-bottom: var(--space-sm);
-            border-left: 3px solid var(--accent-color);
-            padding-left: var(--space-sm);
-        }
-
-        /* Diretriz de UX: Usar --text-subtle para parágrafos longos */
-        .card p,
-        .card li {
-            color: var(--text-subtle);
-            font-size: 1rem;
-            max-width: 70ch; /* Limite de caracteres por linha (UX) */
-        }
-
-        .card ul {
-            list-style-type: disc;
-            list-style-position: inside;
-            padding-left: var(--space-sm);
-            display: grid;
-            gap: 0.5rem;
-        }
-        
-        .card ul.nested-list {
-            list-style-type: circle; /* Style for nested list */
-            list-style-position: inside;
-            padding-left: var(--space-sm);
-            margin-top: 0.5rem;
-            display: grid;
-            gap: 0.25rem; /* Smaller gap */
-        }
-        
-        /* Bloco de Exemplo de Anúncio */
-        .card pre {
-            background-color: var(--primary-bg);
             border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--card-bg);
+        }
+
+        th, td {
             padding: var(--space-sm);
-            border-radius: 8px;
-            color: var(--text-muted);
-            font-family: 'Courier New', Courier, monospace;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
             font-size: 0.95rem;
         }
 
-        /* Novos Estilos para Dicas e Explicações */
-        .tip-box, .explanation-box {
-            background-color: var(--primary-bg); /* Fundo sutilmente diferente */
-            border: 1px dashed var(--border-color);
-            border-radius: 8px;
-            padding: var(--space-sm);
-            margin-top: var(--space-md);
-        }
-        
-        .tip-box h5, .explanation-box h5 {
+        th {
+            background-color: rgba(10, 36, 61, 0.8);
             color: var(--accent-color);
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
+            font-size: 1rem;
+            position: sticky; /* Cabeçalho fixo na rolagem horizontal */
+            top: 0;
+        }
+        
+        tr:last-child th,
+        tr:last-child td {
+            border-bottom: 0;
         }
 
-        .tip-box h5::before {
-            content: '💡';
-            margin-right: 0.5rem;
-            font-size: 1.2rem;
+        tr:hover {
+            background-color: rgba(6, 25, 42, 0.7);
         }
 
-        .explanation-box h5::before {
-            content: 'ℹ️';
-            margin-right: 0.5rem;
-            font-size: 1.2rem;
-        }
-        
-        .tip-box p, .tip-box li,
-        .explanation-box p, .explanation-box li {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .tip-box ul, .explanation-box ul {
-            list-style-type: none;
-            padding-left: 0;
-            margin-top: var(--space-sm);
-        }
-        
-        .tip-box ul li, .explanation-box ul li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .tip-box ul li::before {
-            content: '✅'; /* Checkmark */
-            position: absolute;
-            left: 0;
-            top: 2px;
-        }
-        
-        .explanation-box ul li {
-            padding-left: 0; /* Não precisa de ícone em cada item */
-        }
-        
-        /* Novo Bloco de Ênfase Comportamental */
-        .behavior-focus-box {
-            background-color: var(--primary-bg);
-            border: 1px solid var(--accent-color); /* Borda sólida de destaque */
-            border-radius: 8px;
-            padding: var(--space-sm);
-            margin-top: var(--space-md);
-            box-shadow: var(--accent-glow); /* Brilho sutil */
-        }
-        
-        .behavior-focus-box h5 {
-            color: var(--accent-color);
+        td:first-child, th:first-child {
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .behavior-focus-box h5::before {
-            content: '🎯'; /* Ícone de Alvo */
-            margin-right: 0.5rem;
-            font-size: 1.2rem;
-        }
-        
-        .behavior-focus-box p, .behavior-focus-box li {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            min-width: 120px;
         }
 
-        .behavior-focus-box ul {
-            list-style-type: none;
-            padding-left: 0;
-            margin-top: var(--space-sm);
-        }
+        /* --- 6. Animações e Performance --- */
         
-        .behavior-focus-box ul li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .behavior-focus-box ul li::before {
-            content: '→'; /* Seta simples */
-            color: var(--accent-color);
-            position: absolute;
-            left: 0;
-            top: 2px;
-        }
-        /* Fim dos novos estilos */
-
-
-        /* 3. Rodapé (Footer) */
-        footer {
-            text-align: center;
-            padding: var(--space-md);
-            margin-top: var(--space-lg);
-            border-top: 1px solid var(--border-color);
-        }
-
-        footer p {
-            color: var(--text-subtle);
-            font-size: 0.9rem;
-        }
-
-        /* 5. Animações e Performance (.fade-in) */
-        
-        /* Define o estado inicial para o JS */
+        /* Animação de Entrada (.fade-in) */
         .fade-in {
             opacity: 0;
-            /* A animação será aplicada pela classe 'is-visible' */
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* CLASSE FALTANTE: Aplica a animação quando o JS detecta a visibilidade */
-        .is-visible {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        /* Estilos da Barra de Progresso */
-        .progress-bar-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 5px; /* Altura da barra */
-            background-color: var(--border-color); /* Fundo da barra */
-            z-index: 2000;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            width: 0%; /* Começa em 0 */
-            background-color: var(--accent-color); /* Cor verde */
-            transition: width 0.1s ease-out;
-        }
     </style>
 </head>
 <body>
 
-    <!-- Barra de Progresso (Nova) -->
-    <div class="progress-bar-container">
-        <div class="progress-bar" id="pageProgressBar"></div>
-    </div>
-
-    <!-- 3. Cabeçalho (Header) -->
+    <!-- CABEÇALHO -->
     <header>
-        <div class="container">
-            <!-- 2.1. Logo Principal -->
-            <img src="https://raw.githubusercontent.com/Clebito2/ConsultoriaLive/main/Logo%20live%20oficial-21.png" 
-                 alt="Logo Live Consultoria" 
-                 class="logo"
-                 width="130" height="30"> <!-- Atributos de performance -->
+        <div class="header-container">
+            <!-- Logo Principal (Institucional) -->
+            <a href="#">
+                <img src="https://raw.githubusercontent.com/Clebito2/ConsultoriaLive/main/Logo%20live%20oficial-21.png" 
+                     alt="Logo da Live Consultoria" class="logo-img" loading="lazy">
+            </a>
+            <!-- Navegação (Exemplo) -->
+            <nav>
+                <a href="#manual">Manual 5S</a>
+                <a href="#plano-piloto" style="margin-left: var(--space-sm);">Plano Piloto</a>
+            </nav>
         </div>
     </header>
 
-    <!-- 3. Conteúdo Principal (main) -->
+    <!-- CONTEÚDO PRINCIPAL -->
     <main>
+        <div class="container">
 
-        <!-- Seção Hero (Título e Intro) -->
-        <section class="hero-section" aria-labelledby="manual-title">
-            <div class="container">
-                <h1 id="manual-title" class="fade-in">Manual Prático: Como Divulgar uma Vaga de Vendedor</h1>
-                <p class="subtitle fade-in">
-                    Um guia passo a passo para leigos: como definir a vaga, escrever o anúncio e atrair os candidatos certos (e evitar os errados).
+            <!-- SEÇÃO DE TÍTULO -->
+            <section class="fade-in">
+                <h1>Manual Prático de Implantação 5S</h1>
+                <p class="font-secondary" style="font-size: 1.4rem; color: var(--text-muted);">
+                    Um guia completo para transformar a cultura da sua organização, 
+                    eliminando desperdícios e promovendo a excelência operacional.
                 </p>
-            </div>
-        </section>
+            </section>
 
-        <!-- Seção de Conteúdo (Passos) -->
-        <section class="content-section" aria-label="Guia Passo a Passo">
-            <div class="container">
-                <div class="steps-grid">
+            <!-- SEÇÃO DE ANÁLISE ESTRATÉGICA (Com Card de Destaque) -->
+            <section id="analise" class="fade-in">
+                <div class="card card-diagnostic">
+                    <h2>Análise Estratégica: Do Conceito à Prática</h2>
+                    <p class="font-secondary">
+                        A implantação do 5S é, antes de tudo, uma mudança de cultura. O sucesso não reside na "faxina" inicial, mas na criação de uma disciplina contínua. Nossa análise identifica 4 pilares críticos para a sustentação do programa.
+                    </p>
 
-                    <!-- Passo 1 -->
-                    <article class="card fade-in" aria-labelledby="passo1-title">
-                        <h3 id="passo1-title">Passo 1: Análise Preliminar e Definição do Perfil</h3>
-                        
-                        <h4>Objetivo</h4>
-                        <p>Esta é a fundação. Antes de escrever uma linha, você precisa saber EXATAMENTE quem está procurando e por quê. Contratar errado custa caro.</p>
-                        
-                        <h4>Ações Detalhadas</h4>
+                    <h3>Pilares Críticos para o Sucesso</h3>
+                    <ol>
+                        <li><strong>Projeto Piloto:</strong> Implementar em toda a organização é arriscado. Um piloto permite errar em pequena escala, ajustar checklists e criar um caso de sucesso interno.</li>
+                        <li><strong>Governança (Comitê 5S):</strong> O programa precisa de "donos". É vital formalizar um comitê com um *Sponsor* (Diretoria) para recursos e *Líderes de Área* para execução.</li>
+                        <li><strong>Métricas de Impacto (KPIs):</strong> A "Nota 5S" mede conformidade. O sucesso é medido por métricas de negócio: redução no tempo de busca, diminuição de perdas, aumento do NPS.</li>
+                        <li><strong>Sustentação (Rotina):</strong> A disciplina (*Shitsuke*) falha se for baseada apenas em auditorias. Ela deve ser integrada a rituais diários (ex: "5 Minutos de 5S") e à avaliação de desempenho.</li>
+                    </ol>
 
-                        <div class="behavior-focus-box">
-                            <h5>🎯 Foco no Perfil Comportamental (Início)</h5>
-                            <ul>
-                                <li>
-                                    <strong>Análise Interna (Hunter vs. Farmer):</strong> O que falta na equipe hoje? Precisamos de alguém mais "hunter" (caçador, focado em abrir novos clientes) ou "farmer" (fazendeiro, focado em cuidar e expandir clientes atuais)?
-                                </li>
-                                <li>
-                                    <strong>Defina os Motivadores:</strong> Vendedores de alta performance são movidos a quê? Desafios? Dinheiro? Reconhecimento? Crescimento na carreira? O anúncio deve refletir isso para atrair o perfil certo.
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <ul>
-                            <li>Consulte "Stakeholders": Converse com as pessoas-chave. (ex.: o gerente de vendas, o RH, e até mesmo os vendedores de melhor performance para entender o que dá certo).</li>
-                            <li>Estabeleça critérios de filtragem: Separe o que é "obrigatório" do que é "desejável".
-                                <ul>
-                                    <li><strong>Obrigatório (Mínimo):</strong> O que a pessoa PRECISA ter para começar. (ex.: 2 anos de experiência em vendas por telefone).</li>
-                                    <li><strong>Desejável (Diferencial):</strong> O que seria ótimo se ela tivesse. (ex.: Conhecimento em CRM Salesforce, inglês intermediário).</li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                        <div class="explanation-box">
-                            <h5>Explicando Termos Técnicos</h5>
-                            <ul>
-                                <li><strong>Stakeholders:</strong> Qualquer pessoa que tenha interesse ou seja impactada pela vaga (gerentes, diretores, RH, a própria equipe).</li>
-                                <li><strong>CRM (Customer Relationship Management):</strong> Software para gerenciar o relacionamento e as negociações com clientes (ex.: Pipedrive, HubSpot, Salesforce). É o "painel de controle" do vendedor.</li>
-                                <li><strong>Pipeline (Funil de Vendas):</strong> As etapas visuais da negociação, desde o primeiro contato até o fechamento da venda.</li>
-                            </ul>
-                        </div>
-                        
-                        <h4>Dicas de Integração de Insights</h4>
-                        <p>Anúncios que pedem "habilidades analíticas" (saber ler dados no CRM, entender o pipeline) atraem candidatos mais preparados para vendas B2B (vendas complexas de empresa para empresa). Cuidado com expectativas irreais (pedir 10 anos de experiência para um cargo júnior) para não afastar bons talentos.</p>
-                    </article>
-
-                    <!-- Passo 2 -->
-                    <article class="card fade-in" aria-labelledby="passo2-title">
-                        <h3 id="passo2-title">Passo 2: Pesquisa de Mercado e Benchmarking</h3>
-                        
-                        <h4>Objetivo</h4>
-                        <p>Garantir que seu anúncio e sua vaga sejam competitivos. Você não está apenas selecionando; você também está sendo selecionado pelo candidato.</p>
-                        
-                        <h4>Ações Detalhadas</h4>
-                        <ul>
-                            <li>Pesquise anúncios similares no LinkedIn e Indeed. O que seus concorrentes oferecem? Qual a faixa salarial? Que benefícios eles destacam?</li>
-                            <li>Identifique o que faz um candidato escolher uma vaga em vez de outra (ex.: transparência na remuneração, oportunidades claras de crescimento, boa cultura de empresa).</li>
-                        </ul>
-
-                        <div class="tip-box">
-                            <h5>Dica de Credibilidade</h5>
-                            <p>Use o anúncio para "vender" sua empresa. Destaque conquistas e o posicionamento de mercado para construir credibilidade. (ex.: "Somos a empresa que mais cresceu no setor X nos últimos 2 anos" ou "Temos mais de 500 clientes satisfeitos em 3 países").</p>
-                        </div>
-                    </article>
-
-                    <!-- Passo 3 -->
-                    <article class="card fade-in" aria-labelledby="passo3-title">
-                        <h3 id="passo3-title">Passo 3: Estruturação do Conteúdo do Anúncio</h3>
-                        
-                        <h4>Objetivo</h4>
-                        <p>Organizar as informações de forma clara, honesta e persuasiva para filtrar os curiosos e atrair os qualificados.</p>
-
-                        <div class="tip-box">
-                            <h5>Sugestões de Preenchimento (Copie e Adapte)</h5>
-                            <ul>
-                                <li>
-                                    <strong>Título:</strong> Seja claro e direto. Evite jargões.
-                                    <p>Ex.: "Vendedor(a) Interno(a) - Software (B2B)" ou "Executivo(a) de Contas - Foco em Agências".<br>
-                                    <em>Evite: "Ninja de Vendas" ou "Rockstar Comercial".</em></p>
-                                </li>
-                                <li>
-                                    <strong>Visão Geral da Empresa:</strong>
-                                    <p>Ex.: "Somos uma empresa de tecnologia [descreva a área, ex.: 'focada em SaaS para o mercado financeiro'] e nossa cultura valoriza [descreva valores, ex.: 'colaboração e resultados']. Estamos buscando alguém para crescer conosco."</p>
-                                </li>
-                                <li>
-                                    <strong>Responsabilidades (O dia a dia):</strong> Use verbos de ação.
-                                    <p>Ex.: "Prospectar novos clientes através de cold calls e e-mails", "Gerenciar o funil de vendas no CRM", "Realizar demonstrações online do produto", "Negociar e fechar contratos", "Acompanhar métricas de performance".</p>
-                                </li>
-                                <li>
-                                    <strong>Requisitos (Técnicos):</strong> O que a pessoa precisa SABER FAZER.
-                                    <p>Ex.: "Experiência comprovada (mín. 2 anos) em vendas B2B", "Conhecimento em ferramentas de CRM (ex.: Pipedrive, HubSpot)", "Excel intermediário (para relatórios)".</p>
-                                </li>
-                                <li>
-                                    <strong>Condições (O que oferecemos):</strong> Seja transparente.
-                                    <p>Ex.: "Salário fixo (CLT) de R$ 3.000 + comissões (média de R$ 2.000/mês)", "Benefícios: Vale Refeição (R$ 30/dia), Plano de Saúde", "Modalidade: Híbrido (3 dias no escritório, 2 em casa)".</p>
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <div class="behavior-focus-box">
-                            <h5>🎯 Foco no Perfil Comportamental (Obrigatório)</h5>
-                            <ul>
-                                <li>
-                                    <strong>Requisitos (Comportamentais):</strong> Como a pessoa precisa SER. Frequentemente, isso é mais importante que a parte técnica, pois é mais difícil de treinar.
-                                    <p>Ex.: "Excelente comunicação verbal e escrita", "Proatividade para buscar metas", "Resiliência para lidar com 'não'", "Organização para gerenciar múltiplos leads", "Inteligência emocional para negociações", "Curiosidade para aprender".</p>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="explanation-box">
-                            <h5>Chamada para Diversidade (Importante!)</h5>
-                            <p>A linguagem do anúncio pode incluir ou excluir pessoas. Use termos neutros para atrair talentos diversos.</p>
-                            <ul>
-                                <li>Use "Vendedor(a)" ou "Pessoa Vendedora".</li>
-                                <li>Evite termos "codificados" como gênero: substitua "agressivo" por "assertivo" ou "focado em resultados"; substitua "workaholic" por "comprometido" ou "diligente".</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <!-- Passo 4 -->
-                    <article class="card fade-in" aria-labelledby="passo4-title">
-                        <h3 id="passo4-title">Passo 4: Otimização para Visibilidade e Acessibilidade</h3>
-                        
-                        <h4>Objetivo</h4>
-                        <p>Fazer sua vaga ser encontrada pelas pessoas certas no Google e no LinkedIn.</p>
-                        
-                        <h4>Ações Detalhadas</h4>
-                        <ul>
-                            <li>Incorpore palavras-chave SEO (Otimização para Buscas). Pense: o que um candidato digitaria para achar essa vaga? (ex.: "vagas vendedor software SP", "vendedor CRM", "vendas B2B").</li>
-                            <li>Garanta "Mobile-friendliness". A maioria dos candidatos verá sua vaga pelo celular. O processo de aplicação precisa ser fácil de ler e completar no celular.</li>
-                            <li>Descreva o processo seletivo (ex.: "1. Análise de CV", "2. Bate-papo com RH", "3. Simulação de Vendas", "4. Entrevista com Gestor").</li>
-                        </ul>
-                    </article>
-
-                    <!-- Passo 5 -->
-                    <article class="card fade-in" aria-labelledby="passo5-title">
-                        <h3 id="passo5-title">Passo 5: Revisão, Publicação e Monitoramento</h3>
-                        
-                        <h4>Objetivo</h4>
-                        <p>Assegurar a qualidade final e medir se o anúncio está funcionando.</p>
-                        
-                        <h4>Ações Detalhadas</h4>
-                        <ul>
-                            <li>Revise clareza, gramática e conformidade legal (ex.: não peça informações que possam ser discriminatórias, como idade, estado civil ou religião).</li>
-                            <li>Publique nos canais onde seu candidato está:
-                                <ul class="nested-list">
-                                    <li>Plataformas principais (ex: LinkedIn, sites de emprego).</li>
-                                    <li>Redes sociais da própria empresa (Perfil do LinkedIn, Instagram).</li>
-                                    <li>Grupos de WhatsApp de recrutamento (muitas empresas de RH oferecem essa divulgação gratuitamente).</li>
-                                </ul>
-                            </li>
-                            <li>Acompanhe as métricas: Quantas pessoas viram? Quantas se candidataram? Dessas, quantas realmente tinham o perfil (taxa de qualificação)?</li>
-                        </ul>
-                        
-                        <div class="tip-box">
-                            <h5>Ajuste a Rota</h5>
-                            <p>Se você receber muitos currículos ruins, seu anúncio está vago demais (Passo 1 e 3 falharam). Se receber poucos currículos, seu anúncio pode estar pouco atraente ou a vaga pode estar com requisitos irreais (Passo 2 falhou).</p>
-                        </div>
-                    </article>
-
-                    <!-- Exemplo -->
-                    <article class="card fade-in" aria-labelledby="exemplo-title">
-                        <h3 id="exemplo-title">Exemplo de Anúncio Integrado (Modelo)</h3>
-                        <pre>
-**Vaga: Vendedor(a) Interno(a) - Setor de Tecnologia (SaaS)**
-
-**Sobre Nós:**
-Somos uma empresa inovadora em soluções digitais (SaaS) para o mercado de logística, valorizando a diversidade, a colaboração e o crescimento dos nossos times.
-
-**Suas Responsabilidades (O que você fará):**
-- Prospectar ativamente leads qualificados (B2B) através de e-mail, telefone e LinkedIn.
-- Gerenciar seu pipeline de vendas no CRM (Pipedrive), garantindo follow-ups constantes.
-- Realizar demonstrações online da nossa plataforma, entendendo a dor do cliente.
-- Negociar propostas e fechar novos negócios, focado em bater metas mensais.
-
-**O que buscamos (Requisitos Obrigatórios):**
-- Mínimo de 2 anos de experiência em vendas internas (Inside Sales), preferencialmente em B2B.
-- Experiência prática com alguma ferramenta de CRM (ex: Pipedrive, HubSpot, Salesforce).
-- Excelente comunicação (clara e persuasiva) e habilidade de negociação.
-- Proatividade e resiliência para lidar com um ciclo de vendas consultivo.
-
-**O que seria um diferencial (Desejável):**
-- Conhecimento no setor de Logística ou SaaS.
-- Inglês intermediário (para ler materiais).
-
-**O que oferecemos (Condições):**
-- Salário Fixo (CLT): R$ 3.000,00
-- Comissões agressivas e sem teto (média de ganhos R$ 2.500+)
-- Benefícios: Vale Refeição (R$ 32/dia), Plano de Saúde e Odontológico (100% pago).
-- Modalidade: Híbrido (3x por semana no escritório em [Cidade]).
-- Oportunidade real de crescimento (Plano de Carreira).
-
-**Nosso Processo:**
-1. Análise de CV
-2. Entrevista com RH
-3. Simulação de Vendas (Roleplay)
-4. Entrevista final com Gestor
-
-**Envie seu CV para rh@empresa.com.br com o assunto "Vaga Vendedor SaaS".**
-                        </pre>
-                    </article>
-
-                    <!-- Conclusão -->
-                    <article class="card fade-in" aria-labelledby="conclusao-title">
-                        <h3 id="conclusao-title">Conclusão: O Custo da Contratação Errada</h3>
-                        <p>Seguir este manual exige mais tempo no início (no planejamento), mas economiza um tempo enorme (e muito dinheiro) ao evitar a contratação de um perfil desalinhado. Um anúncio claro é o primeiro e mais importante filtro para construir uma equipe de vendas de alta performance.</p>
-                    </article>
-
+                    <h3>Aprimoramentos Técnicos</h3>
+                    <p>Para elevar a maturidade do programa, recomendamos integrar ferramentas digitais (softwares de gestão, ERPs para estoque) e *Visual Management* (Kanbans, marcação de solo) para fortalecer a padronização.</p>
                 </div>
-            </div>
-        </section>
+            </section>
 
+            <!-- SEÇÃO DO MANUAL DE IMPLANTAÇÃO (FASES) -->
+            <section id="manual" class="fade-in">
+                <div class="card">
+                    <h2>O Manual de Implantação em 3 Fases</h2>
+                    <p>O Programa 5S (Seiri, Seiton, Seiso, Seiketsu, Shitsuke) é a base para a gestão da qualidade. Sua aplicação busca eliminar desperdícios, aumentar a produtividade e melhorar o ambiente de trabalho.</p>
+
+                    <!-- FASE 1 -->
+                    <h3>Fase 1: Preparação e Engajamento (O Alicerce)</h3>
+                    <p>A implementação é, antes de tudo, uma mudança de hábito. Sem o envolvimento da equipe, o programa será visto apenas como uma faxina temporária.</p>
+                    <ul>
+                        <li><strong>Conscientização e Treinamento:</strong> Todos, da liderança à base, devem compreender o propósito. O treinamento 5S deve ser aplicado a todos, com cronograma definido.</li>
+                        <li><strong>Engajamento da Liderança:</strong> A diretoria deve conduzir ativamente a gestão da qualidade.</li>
+                        <li><strong>Comunicação dos Benefícios:</strong> Mostrar como o 5S beneficia a todos, gerando um ambiente mais organizado, seguro e produtivo.</li>
+                        <li><strong>Diagnóstico Inicial:</strong> Antes de agir, é preciso saber onde você está. Use checklists de auditoria 5S para quantificar a situação atual e identificar pontos críticos.</li>
+                    </ul>
+
+                    <!-- FASE 2 -->
+                    <h3>Fase 2: Aplicação Sequencial dos 5 Sensos</h3>
+                    <p>A aplicação deve ser feita um senso de cada vez, começando pelo Seiri, pois ele libera espaço para a organização. Abaixo, detalhamos a aplicação prática em Varejo e Academias.</p>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Senso (Japonês)</th>
+                                    <th>Senso (Português)</th>
+                                    <th>Objetivo Principal</th>
+                                    <th>Aplicação no Varejo e Estoque</th>
+                                    <th>Adaptação para a Academia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Seiri</td>
+                                    <td>Utilização / Descarte</td>
+                                    <td>Separar o útil do inútil. Eliminar desperdícios.</td>
+                                    <td>No Estoque: Identificar e remover itens de baixo giro, quebrados ou vencidos. Retirar paletes danificados.</td>
+                                    <td>Na Área de Treino: Remover equipamentos obsoletos, quebrados ou sem uso. Eliminar objetos pessoais.</td>
+                                </tr>
+                                <tr>
+                                    <td>Seiton</td>
+                                    <td>Ordenação / Organização</td>
+                                    <td>Definir um lugar para cada coisa e mantê-la lá. Otimizar tempo.</td>
+                                    <td>Na Gôndola: Agrupar produtos por tipo/marca. Usar a "zona quente" (altura dos olhos). No Estoque: Implementar Localização Mapeada (endereçamento).</td>
+                                    <td>No Salão: Definir locais específicos e identificados visualmente (etiquetas) para halteres, pesos e acessórios.</td>
+                                </tr>
+                                <tr>
+                                    <td>Seiso</td>
+                                    <td>Limpeza</td>
+                                    <td>Limpar e inspecionar; eliminar a fonte da sujeira.</td>
+                                    <td>Garantir limpeza diária de gôndolas e chão. Inspeção deve identificar problemas (ex: vazamentos). Foco em "não sujar".</td>
+                                    <td>Limpeza regular de equipamentos (suor/poeira). Manter vestiários limpos. Eliminar fontes de sujeira (copos, toalhas).</td>
+                                </tr>
+                                <tr>
+                                    <td>Seiketsu</td>
+                                    <td>Padronização / Saúde</td>
+                                    <td>Manter os 3 Sensos anteriores através de regras. Focar em saúde e segurança.</td>
+                                    <td>Padronizar a comunicação visual (evitar etiquetas improvisadas). Criar checklists de conferência (validade, reposição). Uso de EPIs.</td>
+                                    <td>Padronizar rotinas e escalas de limpeza. Garantir uso de uniformes. Implementar dinâmicas sobre bem-estar.</td>
+                                </tr>
+                                <tr>
+                                    <td>Shitsuke</td>
+                                    <td>Disciplina / Autodisciplina</td>
+                                    <td>Desenvolver o hábito de cumprir rigorosamente as normas.</td>
+                                    <td>Implementar sistema de auditoria. Fazer a equipe seguir o padrão sem fiscalização. Realizar reuniões periódicas de melhoria.</td>
+                                    <td>Garantir que instrutores e alunos mantenham os padrões. Promover a disciplina através da educação contínua.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- NOVO CONTEÚDO ADICIONADO (COMO EXECUTAR + DICAS) -->
+                    <h3 style="margin-top: var(--space-lg);">Fase 2 (Detalhada): Como Executar e Motivar</h3>
+                    <p>A tabela acima resume os objetivos. Abaixo, detalhamos o "como fazer" de cada Senso, com dicas práticas de facilitação e motivação para a equipe.</p>
+
+                    <h4 style="color: var(--text-muted); margin-top: var(--space-md);">1. Seiri (Utilização / Descarte)</h4>
+                    <ul>
+                        <li><strong>Como Executar (Varejo/Estoque):</strong> Promova o "Dia do Descarte". Esvazie uma seção do estoque de cada vez. Crie três áreas lonadas no chão: "MANTER" (itens de giro), "DESCARTAR" (vencidos, quebrados, irrecuperáveis), "ANALISAR/REALOCAR" (itens de baixo giro, obsoletos mas funcionais).</li>
+                        <li><strong>Como Executar (Academia):</strong> Faça uma varredura em todos os equipamentos. Colchonetes rasgados, anilhas rachadas ou puxadores danificados vão para "DESCARTAR". Equipamentos obsoletos ou com pouquíssimo uso (mas funcionais) vão para "ANALISAR/VENDER".</li>
+                        <li><strong>Dica de Facilitação (Etiqueta Vermelha):</strong> Para itens na área "ANALISAR", use o "Método da Etiqueta Vermelha". Cole uma etiqueta em itens que a equipe tem dúvida sobre a utilidade. Defina um prazo (ex: 30 dias). Se ninguém usar ou justificar o item nesse prazo, ele é descartado ou realocado.</li>
+                        <li><strong>Dica de Motivação:</strong> Mostre o custo financeiro. "Cada metro quadrado deste estoque custa R$X por mês. Manter itens inúteis é perder dinheiro." (Varejo). "Equipamentos velhos ou quebrados geram risco de acidentes e insatisfação." (Academia).</li>
+                    </ul>
+
+                    <h4 style="color: var(--text-muted); margin-top: var(--space-md);">2. Seiton (Ordenação / Organização)</h4>
+                    <ul>
+                        <li><strong>Como Executar (Varejo/Estoque):</strong> Use a "Curva ABC". Itens "A" (alto giro) devem ficar mais próximos da expedição/gôndola, na altura mais fácil de pegar. Itens "C" (baixo giro) podem ficar mais altos ou distantes. Implemente o "Endereçamento de Estoque" (Ex: Rua A, Prateleira 03, Nível 4).</li>
+                        <li><strong>Como Executar (Academia):</strong> Crie "Zonas Visuais". Use fitas de marcação no chão para delimitar a área de cada equipamento e o "estacionamento" de pesos livres. Crie "Painéis de Sombra" (shadow boards) na parede para acessórios (puxadores, cordas, cintos), onde o contorno de cada item é desenhado.</li>
+                        <li><strong>Dica de Facilitação:</strong> "Tudo Etiquetado". O padrão deve ser óbvio. Use etiquetas grandes, visuais e padronizadas. A regra de ouro é: "Qualquer pessoa (até um novato) deve encontrar qualquer item em 30 segundos".</li>
+                        <li><strong>Dica de Motivação:</strong> Cronometre o tempo! Meça quanto tempo a equipe leva para montar um pedido (Varejo) ou encontrar um acessório (Academia) *antes* e *depois* do Seiton. Divulgue a redução de tempo (Ex: "Reduzimos em 7 minutos o tempo de reposição!").</li>
+                    </ul>
+
+                    <h4 style="color: var(--text-muted); margin-top: var(--space-md);">3. Seiso (Limpeza)</h4>
+                    <ul>
+                        <li><strong>Como Executar (Varejo):</strong> Trate a "Limpeza como Inspeção". A equipe de limpeza não deve apenas limpar, mas inspecionar. Um chão sujo de óleo pode indicar um vazamento (problema). Crie "Rotinas de Limpeza de 5 Minutos" 10 minutos antes do fechamento da loja.</li>
+                        <li><strong>Como Executar (Academia):</strong> Crie o senso de "Propriedade Coletiva". Disponibilize kits de higienização (álcool, panos) acessíveis aos *clientes* para limpeza pós-uso. Os instrutores devem ser os guardiões da limpeza, inspecionando visualmente e agindo imediatamente.</li>
+                        <li><strong>Dica de Facilitação:</strong> Crie um "Mapa de Zonas de Limpeza". Divida a loja/academia em zonas (Ex: "Área de Caixas", "Vestiário Masculino", "Estoque Frio"). Crie um rodízio semanal de "Donos da Zona", responsáveis por garantir o padrão.</li>
+                        <li><strong>Dica de Motivação:</strong> Conecte limpeza com receita. "Ambientes limpos e bem iluminados aumentam o tempo de permanência do cliente e o ticket médio." (Varejo). "Higiene é o fator nº 1 de escolha e retenção em academias." (Academia).</li>
+                    </ul>
+
+                    <h4 style="color: var(--text-muted); margin-top: var(--space-md);">4. Seiketsu (Padronização / Saúde)</h4>
+                    <ul>
+                        <li><strong>Como Executar (Varejo):</strong> Crie "POP's Visuais" (Procedimento Operacional Padrão). Tire fotos de como uma gôndola deve estar (o "Padrão Ouro") e coloque em um checklist. Padronize uniformes, etiquetas de preço e comunicação de promoções (evite "cartazes" feitos à mão).</li>
+                        <li><strong>Como Executar (Academia):</strong> Crie checklists visuais para abertura e fechamento da academia (Ex: verificar som, iluminação, limpeza de todos os equipamentos, organização dos pesos). Padronize os avisos de segurança e regras de uso dos equipamentos.</li>
+                        <li><strong>Dica de Facilitação:</strong> Use o "Controle Visual". Marcações no chão (zebradas) para "Não obstrua esta área", indicadores visuais de estoque mínimo/máximo nas prateleiras, e os próprios checklists afixados em locais visíveis.</li>
+                        <li><strong>Dica de Motivação:</strong> A padronização reduz o estresse. "Ninguém precisa 'adivinhar' como fazer. O padrão está lá e é o jeito mais fácil e seguro de executar." Isso melhora a saúde mental e a segurança no trabalho.</li>
+                    </ul>
+
+                    <h4 style="color: var(--text-muted); margin-top: var(--space-md);">5. Shitsuke (Disciplina / Autodisciplina)</h4>
+                    <ul>
+                        <li><strong>Como Executar (Varejo/Academia):</strong> "A Auditoria é o Hábito". A disciplina é mantida por auditorias *constantes*. O Comitê 5S (ou os "Donos de Zona") realiza a auditoria semanalmente (no início) e depois mensalmente, *junto* com a equipe da área, não *contra* ela. O foco é em "O que podemos melhorar?" e não "Quem errou?".</li>
+                        <li><strong>Dica de Facilitação:</strong> "Gamificação". Crie um "Ranking 5S" visível em um painel. O departamento/zona com a melhor nota de auditoria no mês ganha um reconhecimento (Ex: um café da manhã especial, um troféu simbólico que fica na área até o próximo mês).</li>
+                        <li><strong>Dica de Motivação:</strong> "Reconhecimento e Consequência". Integre a nota 5S à avaliação de desempenho (como dito no plano piloto). Celebre publicamente as vitórias e as melhorias. Mostre que o 5S não é "extra", é parte fundamental da excelência no trabalho.</li>
+                    </ul>
+                    <!-- FIM DO NOVO CONTEÚDO -->
+
+
+                    <!-- FASE 3 -->
+                    <h3 style="margin-top: var(--space-lg);">Fase 3: Sustentação e Melhoria Contínua (O Kaizen)</h3>
+                    <p>O maior desafio é manter o programa vivo. A disciplina (<strong>Shitsuke</strong>) é mantida pelo monitoramento constante e pela integração do 5S à cultura.</p>
+                    <ul>
+                        <li><strong>Monitoramento e Auditoria:</strong> Use os checklists da Fase 1 semanal ou mensalmente. A auditoria detecta a não padronização como uma oportunidade de melhoria.</li>
+                        <li><strong>Avaliação de Desempenho:</strong> Divulgue a performance das áreas, incentivando uma competição saudável (gamificação).</li>
+                        <li><strong>Feedback e Revisão:</strong> Use os dados das auditorias para definir planos de ação corretiva (Ciclo PDCA).</li>
+                        <li><strong>Investimento em Capital Humano:</strong> O sucesso depende da autodisciplina. O treinamento deve ser contínuo para que os novos valores se tornem hábitos.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- SEÇÃO PLANO PILOTO -->
+            <section id="plano-piloto" class="fade-in">
+                <div class="card">
+                    <h2>Estudo de Caso: Plano Piloto (Loja de Utilidades)</h2>
+                    <p>Abaixo está um resumo do plano de ação tático para uma implantação piloto em uma loja de utilidades domésticas e listas de casamento, com duração de 4 meses.</p>
+
+                    <h3>1. Objetivos e Métricas de Sucesso (KPIs)</h3>
+                    <ul>
+                        <li><strong>Redução de Tempo:</strong> 20-30% de redução no tempo de busca de itens no estoque.</li>
+                        <li><strong>Redução de Perdas:</strong> 15% de diminuição em perdas por danos ou validade.</li>
+                        <li><strong>Satisfação (NPS):</strong> Melhoria de 10-15% na satisfação interna (colaboradores) e externa (clientes).</li>
+                        <li><strong>Adesão:</strong> Taxa de adesão aos padrões 5S superior a 85% nas auditorias finais.</li>
+                    </ul>
+
+                    <h3>2. Cronograma Geral (4 Meses)</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Etapa</th>
+                                    <th>Duração</th>
+                                    <th>Atividades Principais</th>
+                                    <th>Responsáveis</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Preparação</td>
+                                    <td>Mês 1 (Semanas 1-4)</td>
+                                    <td>Diagnóstico, treinamentos (4h/pessoa), formação do Comitê Piloto, planejamento.</td>
+                                    <td>Líder de 5S e Alta Gestão.</td>
+                                </tr>
+                                <tr>
+                                    <td>Aplicação Sequencial</td>
+                                    <td>Mês 2-3 (Semanas 5-12)</td>
+                                    <td>Implantação dos 5 Sensos (Seiri, Seiton, Seiso, Seiketsu) por departamento.</td>
+                                    <td>Equipes departamentais.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sustentação (Shitsuke)</td>
+                                    <td>Mês 4 (Semanas 13-16)</td>
+                                    <td>Auditorias semanais, ajustes de processo, gamificação, avaliação final de KPIs.</td>
+                                    <td>Comitê de Auditoria.</td>
+                                </tr>
+                                <tr>
+                                    <td>Encerramento e Relatório</td>
+                                    <td>Semana 17</td>
+                                    <td>Análise de resultados (ROI), lições aprendidas e recomendações para expansão.</td>
+                                    <td>Líder de 5S.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>3. Riscos e Medidas de Mitigação</h3>
+                    <ul>
+                        <li><strong>Risco:</strong> Resistência da Equipe.
+                            <br><strong>Mitigação:</strong> Enfatizar benefícios pessoais nos treinamentos e envolver líderes desde o início.</li>
+                        <li><strong>Risco:</strong> Sobrecarga Operacional.
+                            <br><strong>Mitigação:</strong> Escalonar atividades fora de horários de pico (conforme minha análise, evitar "1 senso por semana").</li>
+                        <li><strong>Risco:</strong> Baixa Sustentabilidade.
+                            <br><strong>Mitigação:</strong> Integrar o 5S às avaliações de desempenho anuais e aos rituais diários.</li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
     </main>
 
-    <!-- 3. Rodapé (Footer) -->
+    <!-- RODAPÉ -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Live Consultoria. Todos os direitos reservados.</p>
-            <p>Desenvolvido por Cléber Donato</p>
+            <!-- Usando o logo principal novamente, ou o alternativo se preferir -->
+            <img src="https://raw.githubusercontent.com/Clebito2/ConsultoriaLive/main/Logo%20live%20oficial-21.png" 
+                 alt="Logo da Live Consultoria" class="logo-img" style="height: 40px;" loading="lazy">
+            <p>Live Consultoria - Transformando Processos, Impulsionando Resultados.<br>
+               Este documento é um material de propriedade intelectual da Live Consultoria.
+            </p>
         </div>
     </footer>
 
-    <!-- 5. Animações e Performance (JavaScript para IntersectionObserver) -->
+    <!-- JavaScript para Animações (Intersection Observer) -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Animação Fade-in ---
-            const targets = document.querySelectorAll('.fade-in');
-            const options = {
-                root: null,
+        window.onload = () => {
+            // Seleciona todos os elementos que devem ter a animação
+            const elementsToFadeIn = document.querySelectorAll('.fade-in');
+
+            if (!('IntersectionObserver' in window)) {
+                // Se o navegador não suporta, apenas mostra os elementos
+                elementsToFadeIn.forEach(el => el.classList.add('is-visible'));
+                return;
+            }
+
+            // Configuração do Observer
+            const observerOptions = {
+                root: null, // relativo ao viewport
                 rootMargin: '0px',
-                threshold: 0.1
+                threshold: 0.1 // 10% do elemento visível
             };
-            const callback = (entries, observer) => {
+
+            // Callback do Observer
+            const observerCallback = (entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        // Adiciona a classe 'is-visible' quando o elemento entra na tela
                         entry.target.classList.add('is-visible');
+                        // Para de observar o elemento após a animação
                         observer.unobserve(entry.target);
                     }
                 });
             };
-            const observer = new IntersectionObserver(callback, options);
-            targets.forEach(target => {
-                observer.observe(target);
-            });
 
-            // --- Barra de Progresso ---
-            const progressBar = document.getElementById('pageProgressBar');
-            const updateProgressBar = () => {
-                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                
-                // Evita divisão por zero se o conteúdo for menor que a tela
-                if (scrollHeight <= 0) {
-                    progressBar.style.width = '0%';
-                    return;
-                }
-
-                const scrolled = (scrollTop / scrollHeight) * 100;
-                progressBar.style.width = scrolled + "%";
-            };
-
-            // Adiciona o listener de scroll
-            window.addEventListener('scroll', updateProgressBar);
-            
-            // Chama uma vez no carregamento para o caso da página carregar no meio
-            updateProgressBar(); 
-        });
+            // Cria e inicia o Observer
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            elementsToFadeIn.forEach(el => observer.observe(el));
+        };
     </script>
 
 </body>
